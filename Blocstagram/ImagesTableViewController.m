@@ -45,14 +45,15 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (NSArray *)items {
+    return [DataSource sharedInstance].mediaItems;
+}
+
+
 #pragma mark - Table view data source delegate methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSInteger numItems = [DataSource sharedInstance].mediaItems.count;
-    
-    return numItems;
-//    return [DataSource sharedInstance].mediaItems.count;
-    
+    return [self items].count;
 }
 
 
@@ -75,7 +76,7 @@
         [cell.contentView addSubview:imageView];
     }
 
-    Media *item = [DataSource sharedInstance].mediaItems[indexPath.row];
+    Media *item = [self items][indexPath.row];
     imageView.image = item.image;
     
     return cell;
@@ -98,7 +99,7 @@
 //        Media *item = [DataSource sharedInstance].mediaItems[indexPath.row];
 //        [item removeObjectAtIndex:indexPath.row];
         
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+//        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }
@@ -108,7 +109,7 @@
 #pragma mark - Table view delegate methods
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    Media *item = [DataSource sharedInstance].mediaItems[indexPath.row];
+    Media *item = [self items][indexPath.row];
     UIImage *image = item.image;
     return (CGRectGetWidth(self.view.frame) / image.size.width) * image.size.height;
 }
