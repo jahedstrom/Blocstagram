@@ -27,6 +27,7 @@
 		AB3C2D751D202BC7008C5852 /* Media.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3C2D741D202BC7008C5852 /* Media.m */; };
 		AB3C2D781D202CA6008C5852 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3C2D771D202CA6008C5852 /* Comment.m */; };
 		AB3C2D7B1D203505008C5852 /* DataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3C2D7A1D203505008C5852 /* DataSource.m */; };
+		AB3C2D7E1D2449E2008C5852 /* MediaTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3C2D7D1D2449E2008C5852 /* MediaTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,8 @@
 		AB3C2D771D202CA6008C5852 /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
 		AB3C2D791D203505008C5852 /* DataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSource.h; sourceTree = "<group>"; };
 		AB3C2D7A1D203505008C5852 /* DataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSource.m; sourceTree = "<group>"; };
+		AB3C2D7C1D2449E2008C5852 /* MediaTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaTableViewCell.h; sourceTree = "<group>"; };
+		AB3C2D7D1D2449E2008C5852 /* MediaTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +118,8 @@
 				AB3C2D371D1E3A78008C5852 /* AppDelegate.m */,
 				AB3C2D6D1D1EC098008C5852 /* ImagesTableViewController.h */,
 				AB3C2D6E1D1EC098008C5852 /* ImagesTableViewController.m */,
+				AB3C2D7C1D2449E2008C5852 /* MediaTableViewCell.h */,
+				AB3C2D7D1D2449E2008C5852 /* MediaTableViewCell.m */,
 				AB3C2D701D202B49008C5852 /* User.h */,
 				AB3C2D711D202B49008C5852 /* User.m */,
 				AB3C2D731D202BC7008C5852 /* Media.h */,
@@ -277,6 +282,7 @@
 			files = (
 				AB3C2D721D202B49008C5852 /* User.m in Sources */,
 				AB3C2D781D202CA6008C5852 /* Comment.m in Sources */,
+				AB3C2D7E1D2449E2008C5852 /* MediaTableViewCell.m in Sources */,
 				AB3C2D751D202BC7008C5852 /* Media.m in Sources */,
 				AB3C2D381D1E3A78008C5852 /* AppDelegate.m in Sources */,
 				AB3C2D7B1D203505008C5852 /* DataSource.m in Sources */,
