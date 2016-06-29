@@ -14,6 +14,8 @@
 
 @interface ImagesTableViewController ()
 
+@property (nonatomic, readonly) NSArray *items;
+
 @end
 
 @implementation ImagesTableViewController
@@ -53,7 +55,7 @@
 #pragma mark - Table view data source delegate methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self items].count;
+    return self.items.count;
 }
 
 
@@ -76,7 +78,7 @@
         [cell.contentView addSubview:imageView];
     }
 
-    Media *item = [self items][indexPath.row];
+    Media *item = self.items[indexPath.row];
     imageView.image = item.image;
     
     return cell;
@@ -94,12 +96,9 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
+        [[DataSource sharedInstance] removeItemFromDataSource:indexPath.row];
         
-        // leave this commented out until delete method is implemented in the DataSource..
-//        Media *item = [DataSource sharedInstance].mediaItems[indexPath.row];
-//        [item removeObjectAtIndex:indexPath.row];
-        
-//        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }
@@ -109,7 +108,7 @@
 #pragma mark - Table view delegate methods
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    Media *item = [self items][indexPath.row];
+    Media *item = self.items[indexPath.row];
     UIImage *image = item.image;
     return (CGRectGetWidth(self.view.frame) / image.size.width) * image.size.height;
 }

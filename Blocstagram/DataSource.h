@@ -12,6 +12,8 @@
 
 + (instancetype)sharedInstance;
 
+- (void)removeItemFromDataSource:(NSUInteger)index;
+
 @property (nonatomic, strong, readonly) NSArray *mediaItems;
 
 @end

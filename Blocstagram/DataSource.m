@@ -71,6 +71,19 @@
     
 }
 
+- (void)removeItemFromDataSource:(NSUInteger)index {
+    NSMutableArray *tempMediaItems = [NSMutableArray arrayWithArray:self.mediaItems];
+    
+    if (index < tempMediaItems.count) {
+        [tempMediaItems removeObjectAtIndex:index];
+    }
+    
+    self.mediaItems = tempMediaItems;
+}
+
+#pragma mark - Helper Functions
+
+
 - (User *)randomUser {
     User *user = [[User alloc] init];
     
