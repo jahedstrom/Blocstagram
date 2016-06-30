@@ -65,7 +65,7 @@
   
     MediaTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mediaCell" forIndexPath:indexPath];
     cell.mediaItem = self.items[indexPath.row];
-    
+
     return cell;
 }
 
