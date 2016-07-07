@@ -88,7 +88,12 @@
 
 - (void)deleteMediaItem:(Media *)item {
     NSMutableArray *mutableArrayWithKVO = [self mutableArrayValueForKey:@"mediaItems"];
+
+    // First remove item from array..
     [mutableArrayWithKVO removeObject:item];
+    
+    // Then add it back at the beginning.
+    [mutableArrayWithKVO insertObject:item atIndex:0];
 }
 
 #pragma mark - KVO Functions

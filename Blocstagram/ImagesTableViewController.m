@@ -131,6 +131,7 @@
         // Delete the row from the data source
 //        [[DataSource sharedInstance] removeItemFromDataSource:indexPath.row];
         Media *item = self.items[indexPath.row];
+
         [[DataSource sharedInstance] deleteMediaItem:item];
         
 //        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
