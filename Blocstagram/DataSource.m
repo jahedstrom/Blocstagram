@@ -11,8 +11,11 @@
 #import "Media.h"
 #import "Comment.h"
 
-@interface DataSource ()
+@interface DataSource () {
+    NSMutableArray *_mediaItems;
+}
 
+// why this line since we are using KVO and _mediaItems?
 @property (nonatomic, strong) NSArray *mediaItems;
 
 @end
@@ -71,6 +74,7 @@
     
 }
 
+/*
 - (void)removeItemFromDataSource:(NSUInteger)index {
     NSMutableArray *tempMediaItems = [NSMutableArray arrayWithArray:self.mediaItems];
     
@@ -79,6 +83,38 @@
     }
     
     self.mediaItems = tempMediaItems;
+}
+*/
+
+- (void)deleteMediaItem:(Media *)item {
+    NSMutableArray *mutableArrayWithKVO = [self mutableArrayValueForKey:@"mediaItems"];
+    [mutableArrayWithKVO removeObject:item];
+}
+
+#pragma mark - KVO Functions
+
+- (NSUInteger)countOfMediaItems {
+    return self.mediaItems.count;
+}
+
+- (id)objectInMediaItemsAtIndex:(NSUInteger)index {
+    return [self.mediaItems objectAtIndex:index];
+}
+
+- (NSArray *)mediaItemsAtIndexes:(NSIndexSet *)indexes {
+    return [self.mediaItems objectsAtIndexes:indexes];
+}
+
+- (void)insertObject:(Media *)object inMediaItemsAtIndex:(NSUInteger)index {
+    [_mediaItems insertObject:object atIndex:index];
+}
+
+- (void)removeObjectFromMediaItemsAtIndex:(NSUInteger)index {
+    [_mediaItems removeObjectAtIndex:index];
+}
+
+- (void)replaceObjectInMediaItemsAtIndex:(NSUInteger)index withObject:(id)object {
+    [_mediaItems replaceObjectAtIndex:index withObject:object];
 }
 
 #pragma mark - Helper Functions
