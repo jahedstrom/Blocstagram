@@ -42,6 +42,9 @@
     
     [[DataSource sharedInstance] addObserver:self forKeyPath:@"mediaItems" options:0 context:nil];
     
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(refreshControlDidFire:) forControlEvents:UIControlEventValueChanged];
+    
     [self.tableView registerClass:[MediaTableViewCell class] forCellReuseIdentifier:@"mediaCell"];
     
 }
@@ -53,6 +56,22 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)refreshControlDidFire:(UIRefreshControl *)sender {
+    [[DataSource sharedInstance] requestNewItemsWithCompletionHandler:^(NSError *error) {
+        [sender endRefreshing];
+    }];
+}
+
+- (void)infiniteScrollIfNecessary {
+    
+    NSIndexPath *bottomIndexPath = [[self.tableView indexPathsForVisibleRows] lastObject];
+    
+    if (bottomIndexPath && bottomIndexPath.row == self.items.count - 1) {
+        // The very last cell is on screen
+        [[DataSource sharedInstance] requestOldItemsWithCompletionHandler:nil];
+    }
 }
 
 - (NSArray *)items {
@@ -101,6 +120,13 @@
         }
     }
 }
+
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    [self infiniteScrollIfNecessary];
+}
+
 
 #pragma mark - Table view data source delegate methods
 
