@@ -35,6 +35,11 @@ NSString *const LoginViewControllerDidGetAccessTokenNotification = @"LoginViewCo
     
     self.title = NSLocalizedString(@"Login", @"Login");
     
+    
+    // Add a back button to the navigation bar
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self.webView action:@selector(goBack)];
+    self.navigationItem.leftBarButtonItem = backButton;
+    
     NSString *urlString = [NSString stringWithFormat:@"https://instagram.com/oauth/authorize/?client_id=%@&redirect_uri=%@&response_type=token", [DataSource instagramClientID], [self redirectURI]];
     
     NSURL *url = [NSURL URLWithString:urlString];
