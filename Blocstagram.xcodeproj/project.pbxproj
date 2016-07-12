@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB044A991D3056FF00C1B037 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB044A981D3056FF00C1B037 /* LoginViewController.m */; };
 		AB3C2D351D1E3A78008C5852 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3C2D341D1E3A78008C5852 /* main.m */; };
 		AB3C2D381D1E3A78008C5852 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3C2D371D1E3A78008C5852 /* AppDelegate.m */; };
 		AB3C2D401D1E3A78008C5852 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB3C2D3F1D1E3A78008C5852 /* Assets.xcassets */; };
@@ -41,6 +42,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AB044A971D3056FF00C1B037 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		AB044A981D3056FF00C1B037 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		AB3C2D301D1E3A78008C5852 /* Blocstagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Blocstagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB3C2D341D1E3A78008C5852 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AB3C2D361D1E3A78008C5852 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -118,6 +121,8 @@
 				AB3C2D371D1E3A78008C5852 /* AppDelegate.m */,
 				AB3C2D6D1D1EC098008C5852 /* ImagesTableViewController.h */,
 				AB3C2D6E1D1EC098008C5852 /* ImagesTableViewController.m */,
+				AB044A971D3056FF00C1B037 /* LoginViewController.h */,
+				AB044A981D3056FF00C1B037 /* LoginViewController.m */,
 				AB3C2D7C1D2449E2008C5852 /* MediaTableViewCell.h */,
 				AB3C2D7D1D2449E2008C5852 /* MediaTableViewCell.m */,
 				AB3C2D701D202B49008C5852 /* User.h */,
@@ -285,6 +290,7 @@
 				AB3C2D7E1D2449E2008C5852 /* MediaTableViewCell.m in Sources */,
 				AB3C2D751D202BC7008C5852 /* Media.m in Sources */,
 				AB3C2D381D1E3A78008C5852 /* AppDelegate.m in Sources */,
+				AB044A991D3056FF00C1B037 /* LoginViewController.m in Sources */,
 				AB3C2D7B1D203505008C5852 /* DataSource.m in Sources */,
 				AB3C2D351D1E3A78008C5852 /* main.m in Sources */,
 				AB3C2D6F1D1EC098008C5852 /* ImagesTableViewController.m in Sources */,
@@ -408,6 +414,7 @@
 		AB3C2D531D1E3A78008C5852 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Blocstagram/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -419,6 +426,7 @@
 		AB3C2D541D1E3A78008C5852 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Blocstagram/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -23,6 +23,9 @@ typedef void (^NewItemCompletionBlock)(NSError *error);
 - (void)requestNewItemsWithCompletionHandler:(NewItemCompletionBlock)completionHandler;
 - (void)requestOldItemsWithCompletionHandler:(NewItemCompletionBlock)completionHandler;
 
++ (NSString *)instagramClientID;
+
 @property (nonatomic, strong, readonly) NSArray *mediaItems;
+@property (nonatomic, strong, readonly) NSString *accessToken;
 
 @end
