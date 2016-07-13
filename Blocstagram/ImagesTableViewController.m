@@ -21,6 +21,8 @@
 
 @implementation ImagesTableViewController
 
+#pragma mark - Setup/Init
+
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     
@@ -30,6 +32,12 @@
     
     return self;
 }
+
+
+- (NSArray *)items {
+    return [DataSource sharedInstance].mediaItems;
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -58,6 +66,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Scrolling
+
 - (void)refreshControlDidFire:(UIRefreshControl *)sender {
     [[DataSource sharedInstance] requestNewItemsWithCompletionHandler:^(NSError *error) {
         [sender endRefreshing];
@@ -72,10 +82,6 @@
         // The very last cell is on screen
         [[DataSource sharedInstance] requestOldItemsWithCompletionHandler:nil];
     }
-}
-
-- (NSArray *)items {
-    return [DataSource sharedInstance].mediaItems;
 }
 
 #pragma mark - KVO Notification Handling

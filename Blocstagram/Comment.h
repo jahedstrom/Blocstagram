@@ -10,7 +10,7 @@
 
 @class User;
 
-@interface Comment : NSObject
+@interface Comment : NSObject <NSCoding>
 
 - (instancetype)initWithDictionary:(NSDictionary *)commentDictionary;
 
