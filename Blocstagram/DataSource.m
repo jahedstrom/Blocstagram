@@ -65,6 +65,10 @@
                         for (Media* mediaItem in self.mediaItems) {
                             [self downloadImageForMediaItem:mediaItem];
                         }
+                        
+                        // Since there was cached data, get the latest content so user doesn't have to pull to refresh
+                        [self requestNewItemsWithCompletionHandler:nil];
+                        
                     } else {
                         [self populateDataWithParameters:nil completionHandler:nil];
                     }
