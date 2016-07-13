@@ -12,6 +12,8 @@
 
 @interface Comment : NSObject
 
+- (instancetype)initWithDictionary:(NSDictionary *)commentDictionary;
+
 @property (nonatomic, strong) NSString *idNumber;
 @property (nonatomic, strong) User *from;
 @property (nonatomic, strong) NSString *text;

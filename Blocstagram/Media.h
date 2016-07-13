@@ -13,6 +13,8 @@
 
 @interface Media : NSObject
 
+- (instancetype)initWithDictionary:(NSDictionary *)mediaDictionary;
+
 @property (nonatomic, strong) NSString *idNumber;
 @property (nonatomic, strong) User *user;
 @property (nonatomic, strong) NSURL *mediaURL;
