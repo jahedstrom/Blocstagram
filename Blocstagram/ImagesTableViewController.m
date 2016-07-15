@@ -65,6 +65,7 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    NSLog(@"Received Memory Warning in ImagesTableViewController");
 }
 
 #pragma mark - Scrolling
@@ -210,6 +211,12 @@
         [itemsToShare addObject:cell.mediaItem.image];
     }
     
+    if (itemsToShare.count > 0) {
+        [self shareMediaItems:itemsToShare];
+    }
+}
+
+- (void)shareMediaItems:(NSArray *)itemsToShare {
     if (itemsToShare.count > 0) {
         UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:nil];
         [self presentViewController:activityVC animated:YES completion:nil];

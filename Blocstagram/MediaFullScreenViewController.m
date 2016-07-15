@@ -8,12 +8,15 @@
 
 #import "MediaFullScreenViewController.h"
 #import "Media.h"
+#import "ImagesTableViewController.h"
 
 @interface MediaFullScreenViewController () <UIScrollViewDelegate>
 
 @property (nonatomic, strong) Media *media;
 @property (nonatomic, strong) UITapGestureRecognizer *tap;
 @property (nonatomic, strong) UITapGestureRecognizer *doubleTap;
+
+@property (nonatomic, strong) UIButton *shareButton;
 
 @end
 
@@ -54,6 +57,17 @@
     
     [self.scrollView addGestureRecognizer:self.tap];        // attach to superview since it will receive touches of all subviews
     [self.scrollView addGestureRecognizer:self.doubleTap];
+    
+    self.shareButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [self.shareButton setTitle:NSLocalizedString(@"Share", @"Share") forState:UIControlStateNormal];
+    [self.shareButton setBackgroundColor:[UIColor grayColor]];
+    [self.shareButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.shareButton addTarget:self action:@selector(ShareButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:self.shareButton]; // don't add it to the scroll view becuase it will move around..
+    
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -76,6 +90,14 @@
     
     self.scrollView.minimumZoomScale = minScale; // minimum scale = zoomed out all the way
     self.scrollView.maximumZoomScale = 1; // maximum scale = zoomed in all the way
+    
+    // Position shareButton
+    CGFloat buttonWidth = 50;
+    CGFloat buttonHeight = 20;
+    CGFloat shareButtonX = CGRectGetMaxX(self.view.bounds) - buttonWidth - 20; // right side of screen plus a 20 point buffer
+    CGFloat shareButtonY = 20; // 20 points down from the top
+    
+    self.shareButton.frame = CGRectMake(shareButtonX, shareButtonY, buttonWidth, buttonHeight);
 }
 
 - (void)centerScrollView {
@@ -112,7 +134,7 @@
 #pragma mark - Gesture Recognizers
 
 - (void)tapFired:(UITapGestureRecognizer *)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];  // why self, and not self.presentingViewController?
 }
 
 - (void)doubleTapFired:(UITapGestureRecognizer *)sender {
@@ -132,6 +154,30 @@
         
         [self.scrollView setZoomScale:self.scrollView.minimumZoomScale animated:YES];
     }
+}
+
+- (void)ShareButtonPressed:(UIButton *)button {
+    // somehow call a method in ImagesTableViewController to present Activity View Controller
+    // this is probably a totally bad way, but wasn't sure what the best method was - delegate?
+    NSMutableArray *itemsToShare = [NSMutableArray array];
+    
+    if (self.media.caption.length > 0) {
+        [itemsToShare addObject:self.media.caption];
+    }
+    
+    if (self.media.image) {
+        [itemsToShare addObject:self.media.image];
+    }
+    
+    if (itemsToShare.count > 0) {
+        // this doesn't work becuase shareMediaItems calls [self presentViewControll...] and self becomes ImagesTableViewController
+        // which isn't on the stack
+//        [(ImagesTableViewController *)self.presentingViewController.childViewControllers[0] shareMediaItems:itemsToShare];
+        UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:nil];
+        [self presentViewController:activityVC animated:YES completion:nil];
+
+    }
+
 }
 
 - (void)didReceiveMemoryWarning {

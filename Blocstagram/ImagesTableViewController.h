@@ -10,4 +10,6 @@
 
 @interface ImagesTableViewController : UITableViewController
 
+- (void) shareMediaItems:(NSArray *)itemsToShare;
+
 @end
