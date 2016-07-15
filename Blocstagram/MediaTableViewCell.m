@@ -11,7 +11,7 @@
 #import "Media.h"
 #import "Comment.h"
 
-@interface MediaTableViewCell ()
+@interface MediaTableViewCell () <UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) UIImageView *mediaImageView;
 @property (nonatomic, strong) UILabel *usernameAndCaptionLabel;
@@ -21,6 +21,8 @@
 @property (nonatomic, strong) NSLayoutConstraint *usernameAndCaptionLabelHeightConstraint;
 @property (nonatomic, strong) NSLayoutConstraint *commentLabelHeightConstraint;
 
+@property (nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
+@property (nonatomic, strong) UILongPressGestureRecognizer *longPressGestureRecognizer;
 
 @end
 
@@ -41,6 +43,16 @@ static NSParagraphStyle *paragraphStyle;
         // Init code
         self.mediaImageView = [[UIImageView alloc] init];
         //self.mediaImageView.contentMode = UIViewContentModeScaleToFill;
+        self.mediaImageView.userInteractionEnabled = YES;
+        
+        self.tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapFired:)];
+        self.tapGestureRecognizer.delegate = self;
+        [self.mediaImageView addGestureRecognizer:self.tapGestureRecognizer];
+        
+        self.longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressFired:)];
+        self.longPressGestureRecognizer.delegate = self;
+        [self.mediaImageView addGestureRecognizer:self.longPressGestureRecognizer];
+        
         self.usernameAndCaptionLabel = [[UILabel alloc] init];
         self.usernameAndCaptionLabel.numberOfLines = 0; // when set to 0, use as many lines as needed
         self.usernameAndCaptionLabel.backgroundColor = usernameLabelGray;
@@ -240,6 +252,26 @@ static NSParagraphStyle *paragraphStyle;
     }
     
     return commentString;
+}
+
+#pragma mark - Image View
+
+- (void)tapFired:(UIGestureRecognizer *)sender {
+    // MediaTableViewCell delegate property (self.delegate) is set when cell is created in ImagesTableViewController.m -> tableView:cellForRowAtIndexPath:
+    [self.delegate cell:self didTapImageView:self.mediaImageView];
+}
+
+- (void)longPressFired:(UILongPressGestureRecognizer *)sender {
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        [self.delegate cell:self didLongPressImageView:self.mediaImageView];
+    }
+}
+
+#pragma mark - UIGestureRecognizerDelegate
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    // Only allow image zooming if the cell is not currently being edited
+    return self.isEditing == NO;
 }
 
 #pragma mark - Configure View

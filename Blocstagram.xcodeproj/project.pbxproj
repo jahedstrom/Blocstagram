@@ -31,6 +31,7 @@
 		AB3C2D781D202CA6008C5852 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3C2D771D202CA6008C5852 /* Comment.m */; };
 		AB3C2D7B1D203505008C5852 /* DataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3C2D7A1D203505008C5852 /* DataSource.m */; };
 		AB3C2D7E1D2449E2008C5852 /* MediaTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3C2D7D1D2449E2008C5852 /* MediaTableViewCell.m */; };
+		AB88903F1D37F2DA0046CD88 /* MediaFullScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB88903E1D37F2DA0046CD88 /* MediaFullScreenViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,8 @@
 		AB3C2D7A1D203505008C5852 /* DataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSource.m; sourceTree = "<group>"; };
 		AB3C2D7C1D2449E2008C5852 /* MediaTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaTableViewCell.h; sourceTree = "<group>"; };
 		AB3C2D7D1D2449E2008C5852 /* MediaTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaTableViewCell.m; sourceTree = "<group>"; };
+		AB88903D1D37F2DA0046CD88 /* MediaFullScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaFullScreenViewController.h; sourceTree = "<group>"; };
+		AB88903E1D37F2DA0046CD88 /* MediaFullScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaFullScreenViewController.m; sourceTree = "<group>"; };
 		C9A7E7D74F52DF9B1571FC0B /* Pods-BlocstagramTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlocstagramTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BlocstagramTests/Pods-BlocstagramTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DA03C47083AF07606D49CAFF /* Pods-Blocstagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Blocstagram.release.xcconfig"; path = "Pods/Target Support Files/Pods-Blocstagram/Pods-Blocstagram.release.xcconfig"; sourceTree = "<group>"; };
 		E12B30EA8AFA4DD003844D72 /* libPods-BlocstagramTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BlocstagramTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -153,6 +156,8 @@
 				AB3C2D371D1E3A78008C5852 /* AppDelegate.m */,
 				AB3C2D6D1D1EC098008C5852 /* ImagesTableViewController.h */,
 				AB3C2D6E1D1EC098008C5852 /* ImagesTableViewController.m */,
+				AB88903D1D37F2DA0046CD88 /* MediaFullScreenViewController.h */,
+				AB88903E1D37F2DA0046CD88 /* MediaFullScreenViewController.m */,
 				AB044A971D3056FF00C1B037 /* LoginViewController.h */,
 				AB044A981D3056FF00C1B037 /* LoginViewController.m */,
 				AB3C2D7C1D2449E2008C5852 /* MediaTableViewCell.h */,
@@ -416,6 +421,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB88903F1D37F2DA0046CD88 /* MediaFullScreenViewController.m in Sources */,
 				AB3C2D721D202B49008C5852 /* User.m in Sources */,
 				AB3C2D781D202CA6008C5852 /* Comment.m in Sources */,
 				AB3C2D7E1D2449E2008C5852 /* MediaTableViewCell.m in Sources */,

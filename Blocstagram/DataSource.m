@@ -14,11 +14,12 @@
 #import <UICKeyChainStore/UICKeyChainStore.h>
 
 @interface DataSource () {
+    // Why here and not in implementation?
     NSMutableArray *_mediaItems;
 }
 
 // why this line since we are using KVO and _mediaItems?
-@property (nonatomic, strong) NSArray *mediaItems;
+@property (nonatomic, strong) NSArray *mediaItems;  // is there also a ivar *_mediaItems that is type NSArray in addition to the above ivar?
 @property (nonatomic, strong) NSString *accessToken;
 
 @property (nonatomic, assign) BOOL isRefreshing;
