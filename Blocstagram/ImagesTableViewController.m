@@ -18,6 +18,8 @@
 
 @property (nonatomic, readonly) NSArray *items;
 
+@property (nonatomic, assign) BOOL isDecelerating;
+
 @end
 
 @implementation ImagesTableViewController
@@ -129,14 +131,36 @@
     }
 }
 
-#pragma mark - UIScrollViewDelegate
+#pragma mark - Download current visible images
+
+- (void)downloadImagesForVisibleCells {
+    
+    NSArray *visibleIndexPaths = self.tableView.indexPathsForVisibleRows;
+    
+    for (NSIndexPath *indexPath in visibleIndexPaths) {
+        Media *mediaItem = [DataSource sharedInstance].mediaItems[indexPath.row];
+        if (mediaItem.downloadState == MediaDownloadStateNeedsImage) {
+            [[DataSource sharedInstance] downloadImageForMediaItem:mediaItem];
+            NSLog(@"downloaded image..");
+        }
+    }
+}
+
+#pragma mark - UIScrollViewDelegate methods
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     [self infiniteScrollIfNecessary];
+    NSLog(@"scrollViewDidScroll..");
+    NSLog(@"decelerating: %@", self.tableView.decelerating ? @"YES" : @"NO");
 }
 
+- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
+    NSLog(@"scrollViewWillBeginDecelerating..");
+    NSLog(@"decelerating: %@", self.tableView.decelerating ? @"YES" : @"NO");
+    [self downloadImagesForVisibleCells];
+}
 
-#pragma mark - Table view data source delegate methods
+#pragma mark - UITableViewDataSource methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.items.count;
@@ -175,13 +199,17 @@
 }
 
 
-#pragma mark - Table view delegate methods
+#pragma mark - UITableViewDelegate methods
 
 - (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    Media *mediaItem = [DataSource sharedInstance].mediaItems[indexPath.row];
-    if (mediaItem.downloadState == MediaDownloadStateNeedsImage) {
-        [[DataSource sharedInstance] downloadImageForMediaItem:mediaItem];
-    }
+    
+    // Moved to separate function (downloadImagesForVisibleCells) to try and eliminate jumpiness while scrolling fast
+    
+//    Media *mediaItem = [DataSource sharedInstance].mediaItems[indexPath.row];
+//    if (mediaItem.downloadState == MediaDownloadStateNeedsImage) {
+//        [[DataSource sharedInstance] downloadImageForMediaItem:mediaItem];
+//        NSLog(@"downloaded image..");
+//    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -199,7 +227,7 @@
     }
 }
 
-#pragma mark - MediaTableViewCellDelegate
+#pragma mark - MediaTableViewCellDelegate methods
 
 - (void)cell:(MediaTableViewCell *)cell didTapImageView:(UIImageView *)imageView {
     MediaFullScreenViewController *fullScreenVC = [[MediaFullScreenViewController alloc] initWithMedia:cell.mediaItem];
