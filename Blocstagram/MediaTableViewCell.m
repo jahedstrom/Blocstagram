@@ -22,7 +22,9 @@
 @property (nonatomic, strong) NSLayoutConstraint *commentLabelHeightConstraint;
 
 @property (nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
+@property (nonatomic, strong) UITapGestureRecognizer *twoFingerTapGestureRecognizer;
 @property (nonatomic, strong) UILongPressGestureRecognizer *longPressGestureRecognizer;
+
 
 @end
 
@@ -48,6 +50,11 @@ static NSParagraphStyle *paragraphStyle;
         self.tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapFired:)];
         self.tapGestureRecognizer.delegate = self;
         [self.mediaImageView addGestureRecognizer:self.tapGestureRecognizer];
+        
+        self.twoFingerTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(twoFingerTapFired:)];
+        self.twoFingerTapGestureRecognizer.delegate = self;
+        self.twoFingerTapGestureRecognizer.numberOfTouchesRequired = 2;
+        [self addGestureRecognizer:self.twoFingerTapGestureRecognizer];  // tap anywhere in cell to reload image
         
         self.longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressFired:)];
         self.longPressGestureRecognizer.delegate = self;
@@ -256,9 +263,15 @@ static NSParagraphStyle *paragraphStyle;
 
 #pragma mark - Image View
 
-- (void)tapFired:(UIGestureRecognizer *)sender {
+- (void)tapFired:(UITapGestureRecognizer *)sender {
     // MediaTableViewCell delegate property (self.delegate) is set when cell is created in ImagesTableViewController.m -> tableView:cellForRowAtIndexPath:
     [self.delegate cell:self didTapImageView:self.mediaImageView];
+}
+
+- (void)twoFingerTapFired:(UITapGestureRecognizer *)sender {
+    if (sender.state == UIGestureRecognizerStateEnded) {
+        [self.delegate cell:self didTwoFingerTapImageView:self.mediaImageView];
+    }
 }
 
 - (void)longPressFired:(UILongPressGestureRecognizer *)sender {

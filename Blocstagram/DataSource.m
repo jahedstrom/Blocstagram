@@ -180,6 +180,9 @@
 }
 
 - (void)downloadImageForMediaItem:(Media *)mediaItem {
+    
+//    NSLog(@"downloadImageForMediaItem called");
+    
     if (mediaItem.mediaURL && !mediaItem.image) {
         [self.instagramOperationManager GET:mediaItem.mediaURL.absoluteString
                                  parameters:nil

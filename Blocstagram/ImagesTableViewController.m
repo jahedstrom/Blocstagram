@@ -200,6 +200,11 @@
     [self presentViewController:fullScreenVC animated:YES completion:nil];
 }
 
+- (void)cell:(MediaTableViewCell *)cell didTwoFingerTapImageView:(UIImageView *)imageView {
+//    NSLog(@"twoFingerTap delegate called");
+    [[DataSource sharedInstance] downloadImageForMediaItem:cell.mediaItem];
+}
+
 - (void)cell:(MediaTableViewCell *)cell didLongPressImageView:(UIImageView *)imageView {
     NSMutableArray *itemsToShare = [NSMutableArray array];
     
