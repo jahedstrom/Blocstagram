@@ -7,6 +7,7 @@ target 'Blocstagram' do
 
   # Pods for Blocstagram
   pod 'UICKeyChainStore'
+  pod 'AFNetworking', '~> 2.6'
 
   target 'BlocstagramTests' do
     inherit! :search_paths
