@@ -34,6 +34,7 @@
 		AB6080D21D3AE6F900987F54 /* CircleSpinnerView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6080D11D3AE6F900987F54 /* CircleSpinnerView.m */; };
 		AB6080D51D3B1B8700987F54 /* LikeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6080D41D3B1B8700987F54 /* LikeButton.m */; };
 		AB88903F1D37F2DA0046CD88 /* MediaFullScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB88903E1D37F2DA0046CD88 /* MediaFullScreenViewController.m */; };
+		ABDE1C191D3C02C600E5D920 /* ComposeCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDE1C181D3C02C500E5D920 /* ComposeCommentView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +91,8 @@
 		AB6080D41D3B1B8700987F54 /* LikeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LikeButton.m; sourceTree = "<group>"; };
 		AB88903D1D37F2DA0046CD88 /* MediaFullScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaFullScreenViewController.h; sourceTree = "<group>"; };
 		AB88903E1D37F2DA0046CD88 /* MediaFullScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaFullScreenViewController.m; sourceTree = "<group>"; };
+		ABDE1C171D3C02C500E5D920 /* ComposeCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComposeCommentView.h; sourceTree = "<group>"; };
+		ABDE1C181D3C02C500E5D920 /* ComposeCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposeCommentView.m; sourceTree = "<group>"; };
 		C9A7E7D74F52DF9B1571FC0B /* Pods-BlocstagramTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlocstagramTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BlocstagramTests/Pods-BlocstagramTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DA03C47083AF07606D49CAFF /* Pods-Blocstagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Blocstagram.release.xcconfig"; path = "Pods/Target Support Files/Pods-Blocstagram/Pods-Blocstagram.release.xcconfig"; sourceTree = "<group>"; };
 		E12B30EA8AFA4DD003844D72 /* libPods-BlocstagramTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BlocstagramTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -168,6 +171,10 @@
 				AB044A981D3056FF00C1B037 /* LoginViewController.m */,
 				AB3C2D7C1D2449E2008C5852 /* MediaTableViewCell.h */,
 				AB3C2D7D1D2449E2008C5852 /* MediaTableViewCell.m */,
+				AB6080D01D3AE6F900987F54 /* CircleSpinnerView.h */,
+				AB6080D11D3AE6F900987F54 /* CircleSpinnerView.m */,
+				ABDE1C171D3C02C500E5D920 /* ComposeCommentView.h */,
+				ABDE1C181D3C02C500E5D920 /* ComposeCommentView.m */,
 				AB3C2D701D202B49008C5852 /* User.h */,
 				AB3C2D711D202B49008C5852 /* User.m */,
 				AB3C2D731D202BC7008C5852 /* Media.h */,
@@ -176,8 +183,6 @@
 				AB3C2D771D202CA6008C5852 /* Comment.m */,
 				AB3C2D791D203505008C5852 /* DataSource.h */,
 				AB3C2D7A1D203505008C5852 /* DataSource.m */,
-				AB6080D01D3AE6F900987F54 /* CircleSpinnerView.h */,
-				AB6080D11D3AE6F900987F54 /* CircleSpinnerView.m */,
 				AB6080D31D3B1B8700987F54 /* LikeButton.h */,
 				AB6080D41D3B1B8700987F54 /* LikeButton.m */,
 				AB3C2D3F1D1E3A78008C5852 /* Assets.xcassets */,
@@ -441,6 +446,7 @@
 				AB6080D21D3AE6F900987F54 /* CircleSpinnerView.m in Sources */,
 				AB6080D51D3B1B8700987F54 /* LikeButton.m in Sources */,
 				AB3C2D7B1D203505008C5852 /* DataSource.m in Sources */,
+				ABDE1C191D3C02C600E5D920 /* ComposeCommentView.m in Sources */,
 				AB3C2D351D1E3A78008C5852 /* main.m in Sources */,
 				AB3C2D6F1D1EC098008C5852 /* ImagesTableViewController.m in Sources */,
 			);
