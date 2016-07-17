@@ -90,9 +90,15 @@
     _isWritingComment = isWritingComment;
     
     if (animated) {
-        [UIView animateWithDuration:0.2 animations:^{
-            [self layoutSubviews];
-        }];
+        [UIView animateWithDuration:0.9
+                              delay:0.2
+             usingSpringWithDamping:0.7
+              initialSpringVelocity:0.8
+                            options:UIViewAnimationOptionTransitionNone
+                         animations:^{
+                             [self layoutSubviews];
+                         }
+                         completion:nil];
     } else {
         [self layoutSubviews];
     }
