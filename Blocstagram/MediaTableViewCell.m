@@ -26,6 +26,7 @@
 @property (nonatomic, strong) UILongPressGestureRecognizer *longPressGestureRecognizer;
 
 @property (nonatomic, strong) LikeButton *likeButton;
+@property (nonatomic, strong) UILabel *numberOfLikesLabel;
 
 
 @end
@@ -74,15 +75,19 @@ static NSParagraphStyle *paragraphStyle;
         [self.likeButton addTarget:self action:@selector(likePressed:) forControlEvents:UIControlEventTouchUpInside];
         self.likeButton.backgroundColor = usernameLabelGray;
         
-        for (UIView *view in @[self.mediaImageView, self.usernameAndCaptionLabel, self.commentLabel, self.likeButton]) {
+        self.numberOfLikesLabel = [[UILabel alloc] init];
+        self.numberOfLikesLabel.numberOfLines = 0;
+        self.numberOfLikesLabel.backgroundColor = usernameLabelGray;
+        
+        for (UIView *view in @[self.mediaImageView, self.usernameAndCaptionLabel, self.commentLabel, self.likeButton, self.numberOfLikesLabel]) {
             [self.contentView addSubview:view];
             view.translatesAutoresizingMaskIntoConstraints = NO;
         }
-        
-        NSDictionary *viewDictionary = NSDictionaryOfVariableBindings(_mediaImageView, _usernameAndCaptionLabel, _commentLabel, _likeButton);
+
+        NSDictionary *viewDictionary = NSDictionaryOfVariableBindings(_mediaImageView, _usernameAndCaptionLabel, _commentLabel, _likeButton, _numberOfLikesLabel);
         
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_mediaImageView]|" options:kNilOptions metrics:nil views:viewDictionary]];
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_usernameAndCaptionLabel][_likeButton(==38)]|" options:NSLayoutFormatAlignAllTop | NSLayoutFormatAlignAllBottom metrics:nil views:viewDictionary]]; // how can we align to both top and bottom?
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_usernameAndCaptionLabel][_numberOfLikesLabel(==20)][_likeButton(==38)]|" options:NSLayoutFormatAlignAllTop | NSLayoutFormatAlignAllBottom metrics:nil views:viewDictionary]]; // how can we align to both top and bottom?
 
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_commentLabel]|" options:kNilOptions metrics:nil views:viewDictionary]];
         
@@ -199,6 +204,7 @@ static NSParagraphStyle *paragraphStyle;
     self.usernameAndCaptionLabel.attributedText = [self usernameAndCaptionString];
     self.commentLabel.attributedText = [self commentString];
     self.likeButton.likeButtonState = mediaItem.likeState;
+    self.numberOfLikesLabel.attributedText = [self likesLabelString];
 }
 
 # pragma mark - Attributed String Methods
@@ -221,6 +227,16 @@ static NSParagraphStyle *paragraphStyle;
     [mutableUsernameAndCaptionString addAttribute:NSForegroundColorAttributeName value:linkColor range:usernameRange];
     
     return mutableUsernameAndCaptionString;
+}
+
+- (NSAttributedString *)likesLabelString {
+    CGFloat likeLabelFontSize = 15;
+    
+    NSString *baseString = [NSString stringWithFormat:@"%ld", (long)self.mediaItem.numberOfLikes];
+    
+    NSMutableAttributedString *mutableLikesLabelString = [[NSMutableAttributedString alloc] initWithString:baseString attributes:@{NSFontAttributeName : [lightFont fontWithSize:likeLabelFontSize], NSParagraphStyleAttributeName : paragraphStyle}];
+
+    return mutableLikesLabelString;
 }
 
 - (NSAttributedString *)commentString {
