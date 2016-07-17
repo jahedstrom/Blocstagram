@@ -31,6 +31,8 @@
 		AB3C2D781D202CA6008C5852 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3C2D771D202CA6008C5852 /* Comment.m */; };
 		AB3C2D7B1D203505008C5852 /* DataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3C2D7A1D203505008C5852 /* DataSource.m */; };
 		AB3C2D7E1D2449E2008C5852 /* MediaTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3C2D7D1D2449E2008C5852 /* MediaTableViewCell.m */; };
+		AB6080D21D3AE6F900987F54 /* CircleSpinnerView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6080D11D3AE6F900987F54 /* CircleSpinnerView.m */; };
+		AB6080D51D3B1B8700987F54 /* LikeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6080D41D3B1B8700987F54 /* LikeButton.m */; };
 		AB88903F1D37F2DA0046CD88 /* MediaFullScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB88903E1D37F2DA0046CD88 /* MediaFullScreenViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -82,6 +84,10 @@
 		AB3C2D7A1D203505008C5852 /* DataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSource.m; sourceTree = "<group>"; };
 		AB3C2D7C1D2449E2008C5852 /* MediaTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaTableViewCell.h; sourceTree = "<group>"; };
 		AB3C2D7D1D2449E2008C5852 /* MediaTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaTableViewCell.m; sourceTree = "<group>"; };
+		AB6080D01D3AE6F900987F54 /* CircleSpinnerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleSpinnerView.h; sourceTree = "<group>"; };
+		AB6080D11D3AE6F900987F54 /* CircleSpinnerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleSpinnerView.m; sourceTree = "<group>"; };
+		AB6080D31D3B1B8700987F54 /* LikeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LikeButton.h; sourceTree = "<group>"; };
+		AB6080D41D3B1B8700987F54 /* LikeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LikeButton.m; sourceTree = "<group>"; };
 		AB88903D1D37F2DA0046CD88 /* MediaFullScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaFullScreenViewController.h; sourceTree = "<group>"; };
 		AB88903E1D37F2DA0046CD88 /* MediaFullScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaFullScreenViewController.m; sourceTree = "<group>"; };
 		C9A7E7D74F52DF9B1571FC0B /* Pods-BlocstagramTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlocstagramTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BlocstagramTests/Pods-BlocstagramTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -170,6 +176,10 @@
 				AB3C2D771D202CA6008C5852 /* Comment.m */,
 				AB3C2D791D203505008C5852 /* DataSource.h */,
 				AB3C2D7A1D203505008C5852 /* DataSource.m */,
+				AB6080D01D3AE6F900987F54 /* CircleSpinnerView.h */,
+				AB6080D11D3AE6F900987F54 /* CircleSpinnerView.m */,
+				AB6080D31D3B1B8700987F54 /* LikeButton.h */,
+				AB6080D41D3B1B8700987F54 /* LikeButton.m */,
 				AB3C2D3F1D1E3A78008C5852 /* Assets.xcassets */,
 				AB3C2D411D1E3A78008C5852 /* LaunchScreen.storyboard */,
 				AB3C2D441D1E3A78008C5852 /* Info.plist */,
@@ -428,6 +438,8 @@
 				AB3C2D751D202BC7008C5852 /* Media.m in Sources */,
 				AB3C2D381D1E3A78008C5852 /* AppDelegate.m in Sources */,
 				AB044A991D3056FF00C1B037 /* LoginViewController.m in Sources */,
+				AB6080D21D3AE6F900987F54 /* CircleSpinnerView.m in Sources */,
+				AB6080D51D3B1B8700987F54 /* LikeButton.m in Sources */,
 				AB3C2D7B1D203505008C5852 /* DataSource.m in Sources */,
 				AB3C2D351D1E3A78008C5852 /* main.m in Sources */,
 				AB3C2D6F1D1EC098008C5852 /* ImagesTableViewController.m in Sources */,
