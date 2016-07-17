@@ -10,6 +10,9 @@
 		23B6BA99F6DF6FF1E0E87D58 /* libPods-Blocstagram.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 554457BFE77D6B615B34DAC6 /* libPods-Blocstagram.a */; };
 		330C0729BA6B7FB7D1D4E822 /* libPods-BlocstagramTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E12B30EA8AFA4DD003844D72 /* libPods-BlocstagramTests.a */; };
 		AB044A991D3056FF00C1B037 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB044A981D3056FF00C1B037 /* LoginViewController.m */; };
+		AB326CB51D3C2D51003AD410 /* CameraToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = AB326CB41D3C2D51003AD410 /* CameraToolbar.m */; };
+		AB326CB81D3C2E89003AD410 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB326CB71D3C2E89003AD410 /* CameraViewController.m */; };
+		AB326CBD1D3C43E0003AD410 /* UIImage+ImageUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = AB326CBC1D3C43E0003AD410 /* UIImage+ImageUtilities.m */; };
 		AB3C2D351D1E3A78008C5852 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3C2D341D1E3A78008C5852 /* main.m */; };
 		AB3C2D381D1E3A78008C5852 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3C2D371D1E3A78008C5852 /* AppDelegate.m */; };
 		AB3C2D401D1E3A78008C5852 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB3C2D3F1D1E3A78008C5852 /* Assets.xcassets */; };
@@ -53,6 +56,12 @@
 		554457BFE77D6B615B34DAC6 /* libPods-Blocstagram.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Blocstagram.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB044A971D3056FF00C1B037 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		AB044A981D3056FF00C1B037 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		AB326CB31D3C2D51003AD410 /* CameraToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraToolbar.h; sourceTree = "<group>"; };
+		AB326CB41D3C2D51003AD410 /* CameraToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraToolbar.m; sourceTree = "<group>"; };
+		AB326CB61D3C2E89003AD410 /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
+		AB326CB71D3C2E89003AD410 /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
+		AB326CBB1D3C43E0003AD410 /* UIImage+ImageUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageUtilities.h"; sourceTree = "<group>"; };
+		AB326CBC1D3C43E0003AD410 /* UIImage+ImageUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageUtilities.m"; sourceTree = "<group>"; };
 		AB3C2D301D1E3A78008C5852 /* Blocstagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Blocstagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB3C2D341D1E3A78008C5852 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AB3C2D361D1E3A78008C5852 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -169,8 +178,16 @@
 				AB88903E1D37F2DA0046CD88 /* MediaFullScreenViewController.m */,
 				AB044A971D3056FF00C1B037 /* LoginViewController.h */,
 				AB044A981D3056FF00C1B037 /* LoginViewController.m */,
+				AB326CB61D3C2E89003AD410 /* CameraViewController.h */,
+				AB326CB71D3C2E89003AD410 /* CameraViewController.m */,
+				AB326CBB1D3C43E0003AD410 /* UIImage+ImageUtilities.h */,
+				AB326CBC1D3C43E0003AD410 /* UIImage+ImageUtilities.m */,
 				AB3C2D7C1D2449E2008C5852 /* MediaTableViewCell.h */,
 				AB3C2D7D1D2449E2008C5852 /* MediaTableViewCell.m */,
+				AB326CB31D3C2D51003AD410 /* CameraToolbar.h */,
+				AB326CB41D3C2D51003AD410 /* CameraToolbar.m */,
+				AB6080D31D3B1B8700987F54 /* LikeButton.h */,
+				AB6080D41D3B1B8700987F54 /* LikeButton.m */,
 				AB6080D01D3AE6F900987F54 /* CircleSpinnerView.h */,
 				AB6080D11D3AE6F900987F54 /* CircleSpinnerView.m */,
 				ABDE1C171D3C02C500E5D920 /* ComposeCommentView.h */,
@@ -183,8 +200,6 @@
 				AB3C2D771D202CA6008C5852 /* Comment.m */,
 				AB3C2D791D203505008C5852 /* DataSource.h */,
 				AB3C2D7A1D203505008C5852 /* DataSource.m */,
-				AB6080D31D3B1B8700987F54 /* LikeButton.h */,
-				AB6080D41D3B1B8700987F54 /* LikeButton.m */,
 				AB3C2D3F1D1E3A78008C5852 /* Assets.xcassets */,
 				AB3C2D411D1E3A78008C5852 /* LaunchScreen.storyboard */,
 				AB3C2D441D1E3A78008C5852 /* Info.plist */,
@@ -436,18 +451,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB326CB81D3C2E89003AD410 /* CameraViewController.m in Sources */,
 				AB88903F1D37F2DA0046CD88 /* MediaFullScreenViewController.m in Sources */,
 				AB3C2D721D202B49008C5852 /* User.m in Sources */,
 				AB3C2D781D202CA6008C5852 /* Comment.m in Sources */,
 				AB3C2D7E1D2449E2008C5852 /* MediaTableViewCell.m in Sources */,
 				AB3C2D751D202BC7008C5852 /* Media.m in Sources */,
 				AB3C2D381D1E3A78008C5852 /* AppDelegate.m in Sources */,
+				AB326CB51D3C2D51003AD410 /* CameraToolbar.m in Sources */,
 				AB044A991D3056FF00C1B037 /* LoginViewController.m in Sources */,
 				AB6080D21D3AE6F900987F54 /* CircleSpinnerView.m in Sources */,
 				AB6080D51D3B1B8700987F54 /* LikeButton.m in Sources */,
 				AB3C2D7B1D203505008C5852 /* DataSource.m in Sources */,
 				ABDE1C191D3C02C600E5D920 /* ComposeCommentView.m in Sources */,
 				AB3C2D351D1E3A78008C5852 /* main.m in Sources */,
+				AB326CBD1D3C43E0003AD410 /* UIImage+ImageUtilities.m in Sources */,
 				AB3C2D6F1D1EC098008C5852 /* ImagesTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
