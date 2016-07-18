@@ -159,12 +159,7 @@
                 NSError *error = nil;
                 AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:device error:&error];
                 if (!input) {
-                    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:error.localizedDescription message:error.localizedRecoverySuggestion preferredStyle:UIAlertControllerStyleAlert];
-                    [alertVC addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK button") style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-                        [self.delegate cameraViewController:self didCompleteWithImage:nil];
-                    }]];
-                    
-                    [self presentViewController:alertVC animated:YES completion:nil];
+                    [self displayAlertControllerWithTitle:error.localizedDescription message:error.localizedRecoverySuggestion];
                 } else {
                     // #7
                     
@@ -178,14 +173,8 @@
                     [self.session startRunning];
                 }
             } else {
-                UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Camera Permission Denied", @"camera permission denied title")
-                                                                                 message:NSLocalizedString(@"This app doesn't have permission to use the camera; please update your privacy settings.", @"camera permission denied recovery suggestion")
-                                                                          preferredStyle:UIAlertControllerStyleAlert];
-                [alertVC addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK button") style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-                    [self.delegate cameraViewController:self didCompleteWithImage:nil];
-                }]];
-                
-                [self presentViewController:alertVC animated:YES completion:nil];
+                [self displayAlertControllerWithTitle:NSLocalizedString(@"Camera Permission Denied", @"camera permission denied title")
+                                              message:NSLocalizedString(@"This app doesn't have permission to use the camera; please update your privacy settings.", @"camera permission denied recovery suggestion")];
             }
         });
     }];
@@ -197,8 +186,13 @@
     [self.delegate cameraViewController:self didCompleteWithImage:nil];
 }
 
-- (void)alertViewControllerWithTitle:(NSString *)title message:(NSString *)message style:(UIAlertControllerStyle)style handler:(void(^)(UIAlertAction * action))handler {
+- (void)displayAlertControllerWithTitle:(NSString *)title message:(NSString *)message {
+    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    [alertVC addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK button") style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        [self.delegate cameraViewController:self didCompleteWithImage:nil];
+    }]];
     
+    [self presentViewController:alertVC animated:YES completion:nil];
 }
 
 #pragma mark - CameraToolbarDelegate
@@ -293,14 +287,8 @@
             });
         } else {
             dispatch_async(dispatch_get_main_queue(), ^{
-                UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:error.localizedDescription message:error.localizedRecoverySuggestion preferredStyle:UIAlertControllerStyleAlert];
-                [alertVC addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK button") style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-                    [self.delegate cameraViewController:self didCompleteWithImage:nil];
-                }]];
-                
-                [self presentViewController:alertVC animated:YES completion:nil];
+                [self displayAlertControllerWithTitle:error.localizedDescription message:error.localizedRecoverySuggestion];
             });
-            
         }
     }];
 }
