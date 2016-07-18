@@ -14,8 +14,8 @@
     UIImage *fixedImage;
     
     fixedImage = [self imageWithFixedOrientation];
-    fixedImage = [self imageResizedToMatchAspectRatioOfSize:size];
-    fixedImage = [self imageCroppedToRect:rect];
+    fixedImage = [fixedImage imageResizedToMatchAspectRatioOfSize:size];  // had this wrong at first (calling on self)
+    fixedImage = [fixedImage imageCroppedToRect:rect];                    // had this wrong at first (calling on self)
     
     return fixedImage;
 }
