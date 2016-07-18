@@ -16,6 +16,9 @@
 @property (nonatomic, strong) CropBox *cropBox;
 @property (nonatomic, assign) BOOL hasLoadedOnce;
 
+@property (nonatomic, strong) UIToolbar *topView;
+@property (nonatomic, strong) UIToolbar *bottomView;
+
 @end
 
 @implementation CropImageViewController
@@ -28,6 +31,8 @@
         self.media.image = sourceImage;
         
         self.cropBox = [CropBox new];
+        self.topView = [UIToolbar new];
+        self.bottomView = [UIToolbar new];
     }
     
     return self;
@@ -40,7 +45,19 @@
     
     self.view.clipsToBounds = YES;  // isn't the view currently full screen??
     
+    
+    // Make top and bottom toolbars translucent
+    UIColor *whiteBG = [UIColor colorWithWhite:1.0 alpha:.15];  // why set alpha here
+    self.topView.barTintColor = whiteBG;
+    self.bottomView.barTintColor = whiteBG;
+    self.topView.alpha = 0.5;                                   // and here?
+    self.bottomView.alpha = 0.5;
+    
+    // add views to CropImageViewController.view - put toolbars on top
     [self.view addSubview:self.cropBox];
+    [self.view addSubview:self.topView];
+    [self.view addSubview:self.bottomView];
+    
     
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Crop", @"Crop command") style:UIBarButtonItemStyleDone target:self action:@selector(cropPressed:)];
     
@@ -50,6 +67,9 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     self.view.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1];
+    
+    
+
 }
 
 - (void) viewWillLayoutSubviews {
@@ -66,6 +86,14 @@
     self.cropBox.center = CGPointMake(size.width / 2, size.height / 2);
     self.scrollView.frame = self.cropBox.frame;
     self.scrollView.clipsToBounds = NO;
+    
+    CGFloat width = CGRectGetWidth(self.view.bounds);  // could be self.view.frame?
+
+    // make frames for the toolbars using the cropBox frame as a guide
+    self.topView.frame = CGRectMake(0, 0, width, CGRectGetMinY(self.cropBox.frame));
+    CGFloat maxBottomViewFrameY = CGRectGetHeight(self.view.frame);
+    CGFloat minBottomViewFrameY = CGRectGetMaxY(self.cropBox.frame);
+    self.bottomView.frame = CGRectMake(0, minBottomViewFrameY, width, maxBottomViewFrameY - minBottomViewFrameY);
     
     [self recalculateZoomScale];
     

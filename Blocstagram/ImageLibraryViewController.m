@@ -49,15 +49,18 @@
 - (void) viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
     
+    CGFloat spacing = 0.5;
+    
     CGFloat width = CGRectGetWidth(self.view.frame);
-    CGFloat minWidth = 100;
+    CGFloat minWidth = 90;
     NSInteger divisor = width / minWidth;
-    CGFloat cellSize = width / divisor;
+    CGFloat cellSize = (width - divisor*spacing) / divisor;  // have to account for spacing lines otherwise cells will wrap
+                                                             // and you'll have ugly gaps between items.
     
     UICollectionViewFlowLayout *flowLayout = (UICollectionViewFlowLayout *)self.collectionViewLayout;  // why do this
     flowLayout.itemSize = CGSizeMake(cellSize, cellSize);                                              // and not just self.collectionViewLayout.itemSize etc. ?
-    flowLayout.minimumInteritemSpacing = 0;
-    flowLayout.minimumLineSpacing = 0;
+    flowLayout.minimumInteritemSpacing = spacing;
+    flowLayout.minimumLineSpacing = spacing;
 }
 
 - (void) viewWillAppear:(BOOL)animated {
