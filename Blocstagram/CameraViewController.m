@@ -84,6 +84,7 @@
     self.bottomView = [UIToolbar new];
     self.cameraToolbar = [[CameraToolbar alloc] initWithImageNames:@[@"rotate", @"road"]];
     self.cameraToolbar.delegate = self;
+    self.cameraToolbar.frame = CGRectMake(0, 0, 300, 100);      // set default frame size to prevent error: "Unable to simultaneously satisfy constraints." Problem was cameraToolbar height was 0 when trying to constrain button heights
     UIColor *whiteBG = [UIColor colorWithWhite:1.0 alpha:.15];  // why set alpha here
     self.topView.barTintColor = whiteBG;
     self.bottomView.barTintColor = whiteBG;
