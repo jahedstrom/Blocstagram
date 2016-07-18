@@ -10,6 +10,16 @@
 
 @implementation UIImage (ImageUtilities)
 
+- (UIImage *)imageByScalingToSize:(CGSize)size andCroppingWithRect:(CGRect)rect {
+    UIImage *fixedImage;
+    
+    fixedImage = [self imageWithFixedOrientation];
+    fixedImage = [self imageResizedToMatchAspectRatioOfSize:size];
+    fixedImage = [self imageCroppedToRect:rect];
+    
+    return fixedImage;
+}
+
 - (UIImage *) imageWithFixedOrientation {
     // Do nothing if the orientation is already correct
     if (self.imageOrientation == UIImageOrientationUp) return [self copy];
@@ -59,7 +69,7 @@
         case UIImageOrientationRight:
             break;
     }
-    
+
     // Now we draw the underlying CGImage into a new context, applying the transform
     // calculated above.
     CGFloat scaleFactor = self.scale;
