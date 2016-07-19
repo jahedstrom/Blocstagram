@@ -202,34 +202,8 @@
 }
 
 - (UICollectionViewCell*) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-  
-    FilterCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     
-//    static NSInteger imageViewTag = 1000;
-//    static NSInteger labelTag = 1001;
-//    
-//    UIImageView *thumbnail = (UIImageView *)[cell.contentView viewWithTag:imageViewTag];
-//    UILabel *label = (UILabel *)[cell.contentView viewWithTag:labelTag];
-//    
-//    UICollectionViewFlowLayout *flowLayout = (UICollectionViewFlowLayout *)self.filterCollectionView.collectionViewLayout;
-//    CGFloat thumbnailEdgeSize = flowLayout.itemSize.width;
-//
-//    if (!thumbnail) {
-//        thumbnail = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, thumbnailEdgeSize, thumbnailEdgeSize)];
-//        thumbnail.contentMode = UIViewContentModeScaleAspectFill;
-//        thumbnail.tag = imageViewTag;
-//        thumbnail.clipsToBounds = YES;
-//        
-//        [cell.contentView addSubview:thumbnail];
-//    }
-//    
-//    if (!label) {
-//        label = [[UILabel alloc] initWithFrame:CGRectMake(0, thumbnailEdgeSize, thumbnailEdgeSize, 20)];
-//        label.tag = labelTag;
-//        label.textAlignment = NSTextAlignmentCenter;
-//        label.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:10];
-//        [cell.contentView addSubview:label];
-//    }
+    FilterCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     
     cell.filterImage = self.filterImages[indexPath.row];
     cell.filterTitle = self.filterTitles[indexPath.row];
@@ -410,7 +384,83 @@
             [self addCIImageToCollectionView:composite.outputImage withFilterTitle:NSLocalizedString(@"Film", @"Film Filter")];
         }
     }];
-}
+    
+    // Color Change filter
+    
+    [self.photoFilterOperationQueue addOperationWithBlock:^{
+        
+        CGFloat inputRedCoefficients[10] = {1, 0, 0, 0.8, 0.7 ,0 ,0 ,0 ,0 ,0};
+        CGFloat inputGreenCoefficients[10] = {0, 1, 0, 0, 0 ,0 ,0.7 ,0 ,0 ,0};
+        CGFloat inputBlueCoefficients[10] = {0, 0, 0.7, 0, 0 ,0 ,0 ,0 ,0.6 ,0};
+        
+        CIVector *redVector = [CIVector vectorWithValues:inputRedCoefficients count:10];
+        CIVector *greenVector = [CIVector vectorWithValues:inputGreenCoefficients count:10];
+        CIVector *blueVector = [CIVector vectorWithValues:inputBlueCoefficients count:10];
 
+        
+        
+        CIFilter *brightenFilter = [CIFilter filterWithName:@"CIColorCrossPolynomial" keysAndValues:kCIInputImageKey, sourceCIImage,
+                                                                @"inputRedCoefficients", redVector,
+                                                                @"inputGreenCoefficients", greenVector,
+                                                                @"inputBlueCoefficients", blueVector,
+                                                                nil];
+
+        
+        if (brightenFilter) {
+            [brightenFilter setValue:sourceCIImage forKey:kCIInputImageKey];
+            [self addCIImageToCollectionView:brightenFilter.outputImage withFilterTitle:NSLocalizedString(@"Brighten", @"Brighten Filter")];
+        }
+    }];
+    
+    
+    // Invert filter
+    
+    [self.photoFilterOperationQueue addOperationWithBlock:^{
+        CIFilter *invertFilter = [CIFilter filterWithName:@"CIColorMatrix" keysAndValues:
+                                  kCIInputImageKey, sourceCIImage,
+                                  @"inputRVector", [CIVector vectorWithX:-1 Y:0 Z:0],
+                                  @"inputGVector", [CIVector vectorWithX:0 Y:-1 Z:0],
+                                  @"inputBVector", [CIVector vectorWithX:0 Y:0 Z:-1],
+                                  @"inputBiasVector", [CIVector vectorWithX:1 Y:1 Z:1],
+                                  nil];
+
+        
+        if (invertFilter) {
+            [invertFilter setValue:sourceCIImage forKey:kCIInputImageKey];
+            [self addCIImageToCollectionView:invertFilter.outputImage withFilterTitle:NSLocalizedString(@"Invert", @"Invert Filter")];
+        }
+    }];
+    
+
+// Keyhole filter
+
+[self.photoFilterOperationQueue addOperationWithBlock:^{
+    
+    NSNumber *radius = @5;
+    NSNumber *intensity = @20;
+    CIFilter *sepiaFilter = [CIFilter filterWithName:@"CISepiaTone" keysAndValues:
+                             kCIInputImageKey, sourceCIImage,
+                             @"inputIntensity", @8,
+                             nil];
+    
+    
+    
+    CIFilter *vignetteFilter = [CIFilter filterWithName:@"CIVignette"];
+    
+    if (sepiaFilter) {
+        CIImage *result = sepiaFilter.outputImage;
+        
+        if (vignetteFilter) {
+            [vignetteFilter setValue:radius forKeyPath:@"inputRadius"];
+            [vignetteFilter setValue:intensity forKeyPath:@"inputIntensity"];
+            [vignetteFilter setValue:sourceCIImage forKey:kCIInputImageKey];
+            result = vignetteFilter.outputImage;
+        }
+        
+        [self addCIImageToCollectionView:result withFilterTitle:NSLocalizedString(@"Keyhole", @"Keyhole Filter")];
+    }
+}];
+
+}
 
 @end
