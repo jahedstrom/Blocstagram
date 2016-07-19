@@ -12,6 +12,7 @@
 @interface LoginViewController () <UIWebViewDelegate>
 
 @property (nonatomic, weak)  UIWebView *webView;
+@property (nonatomic, strong) UIBarButtonItem *backButton;
 
 @end
 
@@ -35,10 +36,8 @@ NSString *const LoginViewControllerDidGetAccessTokenNotification = @"LoginViewCo
     
     self.title = NSLocalizedString(@"Login", @"Login");
     
-    
-    // Add a back button to the navigation bar
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self.webView action:@selector(goBack)];
-    self.navigationItem.leftBarButtonItem = backButton;
+    // setup back button for use later
+    self.backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self.webView action:@selector(goBack)];
     
     NSString *urlString = [NSString stringWithFormat:@"https://instagram.com/oauth/authorize/?client_id=%@&scope=likes+comments+relationships&redirect_uri=%@&response_type=token", [DataSource instagramClientID], [self redirectURI]];
     
@@ -94,6 +93,17 @@ NSString *const LoginViewControllerDidGetAccessTokenNotification = @"LoginViewCo
     }
     
     return YES;
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    if (self.webView.canGoBack) {
+        // Add a back button to the navigation bar
+        self.navigationItem.leftBarButtonItem = self.backButton;
+    } else {
+        // remove from navigation bar
+        self.navigationItem.leftBarButtonItem = nil;
+    }
+
 }
 
 /*
