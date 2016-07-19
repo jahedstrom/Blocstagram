@@ -7,6 +7,7 @@
 //
 
 #import "PostToInstagramViewController.h"
+#import "FilterCollectionViewCell.h"
 
 
 @interface PostToInstagramViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UIDocumentInteractionControllerDelegate>
@@ -80,7 +81,7 @@
         self.navigationItem.rightBarButtonItem = self.sendBarButton;
     }
     
-    [self.filterCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
+    [self.filterCollectionView registerClass:[FilterCollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
     
     self.view.backgroundColor = [UIColor whiteColor];
     self.filterCollectionView.backgroundColor = [UIColor whiteColor];
@@ -123,7 +124,7 @@
     UIAlertController *alertVC;
     
 //    if ([[UIApplication sharedApplication] canOpenURL:instagramURL]) {
-    if (1) {
+    if (1) {  // temporary override for testing
 
         alertVC = [UIAlertController alertControllerWithTitle:@"" message:NSLocalizedString(@"Add a caption and send your image in the Instagram app.", @"send image instructions") preferredStyle:UIAlertControllerStyleAlert];
         
@@ -201,36 +202,37 @@
 }
 
 - (UICollectionViewCell*) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+  
+    FilterCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     
-    static NSInteger imageViewTag = 1000;
-    static NSInteger labelTag = 1001;
+//    static NSInteger imageViewTag = 1000;
+//    static NSInteger labelTag = 1001;
+//    
+//    UIImageView *thumbnail = (UIImageView *)[cell.contentView viewWithTag:imageViewTag];
+//    UILabel *label = (UILabel *)[cell.contentView viewWithTag:labelTag];
+//    
+//    UICollectionViewFlowLayout *flowLayout = (UICollectionViewFlowLayout *)self.filterCollectionView.collectionViewLayout;
+//    CGFloat thumbnailEdgeSize = flowLayout.itemSize.width;
+//
+//    if (!thumbnail) {
+//        thumbnail = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, thumbnailEdgeSize, thumbnailEdgeSize)];
+//        thumbnail.contentMode = UIViewContentModeScaleAspectFill;
+//        thumbnail.tag = imageViewTag;
+//        thumbnail.clipsToBounds = YES;
+//        
+//        [cell.contentView addSubview:thumbnail];
+//    }
+//    
+//    if (!label) {
+//        label = [[UILabel alloc] initWithFrame:CGRectMake(0, thumbnailEdgeSize, thumbnailEdgeSize, 20)];
+//        label.tag = labelTag;
+//        label.textAlignment = NSTextAlignmentCenter;
+//        label.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:10];
+//        [cell.contentView addSubview:label];
+//    }
     
-    UIImageView *thumbnail = (UIImageView *)[cell.contentView viewWithTag:imageViewTag];
-    UILabel *label = (UILabel *)[cell.contentView viewWithTag:labelTag];
-    
-    UICollectionViewFlowLayout *flowLayout = (UICollectionViewFlowLayout *)self.filterCollectionView.collectionViewLayout;
-    CGFloat thumbnailEdgeSize = flowLayout.itemSize.width;
-    
-    if (!thumbnail) {
-        thumbnail = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, thumbnailEdgeSize, thumbnailEdgeSize)];
-        thumbnail.contentMode = UIViewContentModeScaleAspectFill;
-        thumbnail.tag = imageViewTag;
-        thumbnail.clipsToBounds = YES;
-        
-        [cell.contentView addSubview:thumbnail];
-    }
-    
-    if (!label) {
-        label = [[UILabel alloc] initWithFrame:CGRectMake(0, thumbnailEdgeSize, thumbnailEdgeSize, 20)];
-        label.tag = labelTag;
-        label.textAlignment = NSTextAlignmentCenter;
-        label.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:10];
-        [cell.contentView addSubview:label];
-    }
-    
-    thumbnail.image = self.filterImages[indexPath.row];
-    label.text = self.filterTitles[indexPath.row];
+    cell.filterImage = self.filterImages[indexPath.row];
+    cell.filterTitle = self.filterTitles[indexPath.row];
     
     return cell;
 }

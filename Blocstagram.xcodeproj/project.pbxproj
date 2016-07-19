@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		23B6BA99F6DF6FF1E0E87D58 /* libPods-Blocstagram.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 554457BFE77D6B615B34DAC6 /* libPods-Blocstagram.a */; };
 		330C0729BA6B7FB7D1D4E822 /* libPods-BlocstagramTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E12B30EA8AFA4DD003844D72 /* libPods-BlocstagramTests.a */; };
+		AB02F1F41D3DF3B600B7C733 /* FilterCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB02F1F31D3DF3B600B7C733 /* FilterCollectionViewCell.m */; };
 		AB044A991D3056FF00C1B037 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB044A981D3056FF00C1B037 /* LoginViewController.m */; };
 		AB326CB51D3C2D51003AD410 /* CameraToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = AB326CB41D3C2D51003AD410 /* CameraToolbar.m */; };
 		AB326CB81D3C2E89003AD410 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB326CB71D3C2E89003AD410 /* CameraViewController.m */; };
@@ -58,6 +59,8 @@
 		3C5D43778D55028F4FF61861 /* Pods-BlocstagramTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlocstagramTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BlocstagramTests/Pods-BlocstagramTests.release.xcconfig"; sourceTree = "<group>"; };
 		420436AEEF282C00C4713E9B /* Pods-Blocstagram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Blocstagram.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Blocstagram/Pods-Blocstagram.debug.xcconfig"; sourceTree = "<group>"; };
 		554457BFE77D6B615B34DAC6 /* libPods-Blocstagram.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Blocstagram.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB02F1F21D3DF3B600B7C733 /* FilterCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterCollectionViewCell.h; sourceTree = "<group>"; };
+		AB02F1F31D3DF3B600B7C733 /* FilterCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterCollectionViewCell.m; sourceTree = "<group>"; };
 		AB044A971D3056FF00C1B037 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		AB044A981D3056FF00C1B037 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		AB326CB31D3C2D51003AD410 /* CameraToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraToolbar.h; sourceTree = "<group>"; };
@@ -202,6 +205,8 @@
 				AB326CBC1D3C43E0003AD410 /* UIImage+ImageUtilities.m */,
 				AB3C2D7C1D2449E2008C5852 /* MediaTableViewCell.h */,
 				AB3C2D7D1D2449E2008C5852 /* MediaTableViewCell.m */,
+				AB02F1F21D3DF3B600B7C733 /* FilterCollectionViewCell.h */,
+				AB02F1F31D3DF3B600B7C733 /* FilterCollectionViewCell.m */,
 				AB326CB31D3C2D51003AD410 /* CameraToolbar.h */,
 				AB326CB41D3C2D51003AD410 /* CameraToolbar.m */,
 				AB6080D31D3B1B8700987F54 /* LikeButton.h */,
@@ -474,6 +479,7 @@
 				AB326CB81D3C2E89003AD410 /* CameraViewController.m in Sources */,
 				AB88903F1D37F2DA0046CD88 /* MediaFullScreenViewController.m in Sources */,
 				AB3C2D721D202B49008C5852 /* User.m in Sources */,
+				AB02F1F41D3DF3B600B7C733 /* FilterCollectionViewCell.m in Sources */,
 				AB3C2D781D202CA6008C5852 /* Comment.m in Sources */,
 				AB326CC61D3D6086003AD410 /* ImageLibraryViewController.m in Sources */,
 				AB326CC01D3D5857003AD410 /* CropBox.m in Sources */,
