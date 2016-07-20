@@ -71,7 +71,6 @@
             if ([PHPhotoLibrary authorizationStatus] == PHAuthorizationStatusAuthorized) { // why not use status that's passed into the block?
                 dispatch_async(dispatch_get_main_queue(), ^{  // why the need to dispatch to main queue, doc's say this method returns immediately
                     [self loadAssets];
-                    [self.collectionView reloadData];
                 });
             }
         }];
@@ -87,6 +86,7 @@
     options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:YES]];
     
     self.result = [PHAsset fetchAssetsWithMediaType:PHAssetMediaTypeImage options:options];
+    [self.collectionView reloadData];
 }
 
 #pragma mark - UICollectionViewDataSource methods  // conform to UICollectionViewDataSource and UICollectionViewDelegate in UICollectionViewController.h
