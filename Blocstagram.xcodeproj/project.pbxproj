@@ -11,6 +11,7 @@
 		330C0729BA6B7FB7D1D4E822 /* libPods-BlocstagramTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E12B30EA8AFA4DD003844D72 /* libPods-BlocstagramTests.a */; };
 		AB02F1F41D3DF3B600B7C733 /* FilterCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB02F1F31D3DF3B600B7C733 /* FilterCollectionViewCell.m */; };
 		AB044A991D3056FF00C1B037 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB044A981D3056FF00C1B037 /* LoginViewController.m */; };
+		AB215A5B1D42914C000722B1 /* UserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB215A5A1D42914C000722B1 /* UserTests.m */; };
 		AB326CB51D3C2D51003AD410 /* CameraToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = AB326CB41D3C2D51003AD410 /* CameraToolbar.m */; };
 		AB326CB81D3C2E89003AD410 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB326CB71D3C2E89003AD410 /* CameraViewController.m */; };
 		AB326CBD1D3C43E0003AD410 /* UIImage+ImageUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = AB326CBC1D3C43E0003AD410 /* UIImage+ImageUtilities.m */; };
@@ -63,6 +64,7 @@
 		AB02F1F31D3DF3B600B7C733 /* FilterCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterCollectionViewCell.m; sourceTree = "<group>"; };
 		AB044A971D3056FF00C1B037 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		AB044A981D3056FF00C1B037 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		AB215A5A1D42914C000722B1 /* UserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTests.m; sourceTree = "<group>"; };
 		AB326CB31D3C2D51003AD410 /* CameraToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraToolbar.h; sourceTree = "<group>"; };
 		AB326CB41D3C2D51003AD410 /* CameraToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraToolbar.m; sourceTree = "<group>"; };
 		AB326CB61D3C2E89003AD410 /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 			children = (
 				AB3C2D4D1D1E3A78008C5852 /* BlocstagramTests.m */,
 				AB3C2D4F1D1E3A78008C5852 /* Info.plist */,
+				AB215A5A1D42914C000722B1 /* UserTests.m */,
 			);
 			path = BlocstagramTests;
 			sourceTree = "<group>";
@@ -504,6 +507,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB215A5B1D42914C000722B1 /* UserTests.m in Sources */,
 				AB3C2D4E1D1E3A78008C5852 /* BlocstagramTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
