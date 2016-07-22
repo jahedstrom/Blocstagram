@@ -26,10 +26,8 @@
 
 @property (nonatomic, strong) UIDocumentInteractionController *documentController;
 
-@property (nonatomic, strong) NSLayoutConstraint *previewImageBottomConstraint;
-@property (nonatomic, strong) NSLayoutConstraint *previewImageTopConstraint;
-@property (nonatomic, strong) NSLayoutConstraint *filterCollectionTopConstraint;
-@property (nonatomic, strong) NSLayoutConstraint *filterCollectionBottomConstraint;
+@property (nonatomic, strong) NSLayoutConstraint *previewImageHeightConstraint;
+@property (nonatomic, strong) NSLayoutConstraint *filterCollectionHeightConstraint;
 
 @end
 
@@ -81,58 +79,35 @@
 
         [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[_sendButton]-10-|" options:kNilOptions metrics:nil views:viewDictionary]];
         
-        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_previewImageView][_filterCollectionView][_sendButton(==50)]-10-|"
+        // navigation bar is 64 points tall plus a 10 point buffer inbetween items
+        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-64-[_previewImageView]-10-[_filterCollectionView]-10-[_sendButton(==50)]"
                                                                                  options:kNilOptions
                                                                                  metrics:nil
                                                                                    views:viewDictionary]];
         
-        // set the previewImageView to some height to be changed later
-//        self.previewImageHeightConstraint = [NSLayoutConstraint constraintWithItem:_previewImageView
-//                                                                  attribute:NSLayoutAttributeHeight
-//                                                                  relatedBy:NSLayoutRelationEqual
-//                                                                     toItem:nil
-//                                                                  attribute:NSLayoutAttributeNotAnAttribute
-//                                                                 multiplier:1
-//                                                                   constant:100];
+        // set the previewImageView to some height to be changed in layoutSubviews
+        self.previewImageHeightConstraint = [NSLayoutConstraint constraintWithItem:_previewImageView
+                                                                  attribute:NSLayoutAttributeHeight
+                                                                  relatedBy:NSLayoutRelationEqual
+                                                                     toItem:nil
+                                                                  attribute:NSLayoutAttributeNotAnAttribute
+                                                                 multiplier:1
+                                                                   constant:100];
 
-//        self.previewImageHeightConstraint.identifier = @"Preview Image height constraint";
+        self.previewImageHeightConstraint.identifier = @"Preview Image height constraint";
         
-        self.previewImageTopConstraint = [NSLayoutConstraint constraintWithItem:_previewImageView
-                                                                         attribute:NSLayoutAttributeTop
+        // set the filterCollectionView height to some value to be changed in layoutSubviews
+        self.filterCollectionHeightConstraint = [NSLayoutConstraint constraintWithItem:_filterCollectionView
+                                                                         attribute:NSLayoutAttributeHeight
                                                                          relatedBy:NSLayoutRelationEqual
-                                                                         toItem:self.view
-                                                                         attribute:NSLayoutAttributeTop
+                                                                            toItem:nil
+                                                                         attribute:NSLayoutAttributeNotAnAttribute
                                                                         multiplier:1
-                                                                          constant:50];
+                                                                          constant:100];
         
-        self.previewImageBottomConstraint = [NSLayoutConstraint constraintWithItem:_previewImageView
-                                                                      attribute:NSLayoutAttributeBottom
-                                                                      relatedBy:NSLayoutRelationEqual
-                                                                         toItem:self.view
-                                                                      attribute:NSLayoutAttributeTop
-                                                                     multiplier:1
-                                                                       constant:100];
-        
-        self.filterCollectionTopConstraint = [NSLayoutConstraint constraintWithItem:_filterCollectionView
-                                                                      attribute:NSLayoutAttributeTop
-                                                                      relatedBy:NSLayoutRelationEqual
-                                                                         toItem:self.previewImageView
-                                                                      attribute:NSLayoutAttributeBottom
-                                                                     multiplier:1
-                                                                       constant:10];
+        self.previewImageHeightConstraint.identifier = @"Filter Collection View height constraint";
 
-        self.filterCollectionBottomConstraint = [NSLayoutConstraint constraintWithItem:_filterCollectionView
-                                                                          attribute:NSLayoutAttributeBottom
-                                                                          relatedBy:NSLayoutRelationEqual
-                                                                             toItem:self.previewImageView
-                                                                          attribute:NSLayoutAttributeBottom
-                                                                         multiplier:1
-                                                                           constant:175];
-
-//        [self.view addConstraints:@[self.previewImageHeightConstraint, self.previewImageTopConstraint]];
-        [self.view addConstraints:@[self.previewImageTopConstraint, self.previewImageBottomConstraint, self.filterCollectionTopConstraint, self.filterCollectionBottomConstraint]];
-
-        
+        [self.view addConstraints:@[self.previewImageHeightConstraint, self.filterCollectionHeightConstraint]];
     }
     
     return self;
@@ -188,28 +163,13 @@
 //    self.filterCollectionView.frame = CGRectMake(0, filterViewYOrigin, CGRectGetWidth(self.view.frame), filterViewHeight);
 //    
     
-//    self.previewImageHeightConstraint.constant = edgeSize;
+    self.previewImageHeightConstraint.constant = edgeSize;
     
-    CGFloat topLayoutGuideLength = self.topLayoutGuide.length;
-    
-    self.previewImageTopConstraint.constant = topLayoutGuideLength;
-    
-    self.previewImageBottomConstraint.constant = edgeSize + topLayoutGuideLength;
-    
-//    self.filterCollectionTopConstraint.constant = self.previewImageBottomConstraint.constant + 10;
-    
-//    self.filterCollectionBottomConstraint.constant = 10 + 50 + 10; // buffer + button height + buffer
-    
-//    CGFloat heightOfFilterCollectionView = self.filterCollectionTopConstraint.constant - self.filterCollectionBottomConstraint.constant;
+    // this is not the right way to do it, but couldn't figure out a constraint to relate to..
+    self.filterCollectionHeightConstraint.constant = CGRectGetHeight(self.view.frame) - edgeSize - 64 - 10 - 10 - 50 - 10;
     
     UICollectionViewFlowLayout *flowLayout = (UICollectionViewFlowLayout *)self.filterCollectionView.collectionViewLayout;   // do this again, why?
-//    flowLayout.itemSize = CGSizeMake(CGRectGetHeight(self.filterCollectionView.frame) - 20, CGRectGetHeight(self.filterCollectionView.frame));
-//    flowLayout.itemSize = CGSizeMake(heightOfFilterCollectionView - 20, heightOfFilterCollectionView);
-    flowLayout.itemSize = CGSizeMake(120, 140);
-
-    
-    NSLog(@"breakpoint");
-
+    flowLayout.itemSize = CGSizeMake(self.filterCollectionHeightConstraint.constant - 20, self.filterCollectionHeightConstraint.constant);
 }
 
 #pragma mark - Buttons
