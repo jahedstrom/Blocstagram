@@ -10,10 +10,11 @@
 #import "Media.h"
 #import "ImagesTableViewController.h"
 
-@interface MediaFullScreenViewController () <UIScrollViewDelegate>
+@interface MediaFullScreenViewController () <UIScrollViewDelegate, UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) UITapGestureRecognizer *tap;
 @property (nonatomic, strong) UITapGestureRecognizer *doubleTap;
+@property (nonatomic, strong) UITapGestureRecognizer *tapBehind;
 
 @property (nonatomic, strong) UIButton *shareButton;
 
@@ -69,10 +70,32 @@
     
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated { // gets called everytime the view appears
     [super viewWillAppear:animated];
     
     [self centerScrollView]; // why here and not in viewDidLoad or viewWillLayoutSubviews?
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    if(!self.tapBehind) {
+        self.tapBehind = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapBehindFired:)];
+        self.tapBehind.delegate = self;  // don't understand why this is necessary - how different from initWithTarget: above?  doesn't work without it though
+        [self.tapBehind setNumberOfTapsRequired:1];
+        [self.tapBehind setCancelsTouchesInView:NO]; //So the user can still interact with controls in the modal view
+    }
+    
+    [self.view.window addGestureRecognizer:self.tapBehind];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    if(self.tapBehind) {
+        [self.view.window removeGestureRecognizer:self.tapBehind];
+        self.tapBehind = nil;
+    }
 }
 
 - (void)viewWillLayoutSubviews {
@@ -142,6 +165,7 @@
 
 - (void)tapFired:(UITapGestureRecognizer *)sender {
     [self dismissViewControllerAnimated:YES completion:nil];  // why self, and not self.presentingViewController?
+
 }
 
 - (void)doubleTapFired:(UITapGestureRecognizer *)sender {
@@ -160,6 +184,22 @@
     } else {
         
         [self.scrollView setZoomScale:self.scrollView.minimumZoomScale animated:YES];
+    }
+}
+
+- (void)tapBehindFired:(UITapGestureRecognizer *)sender {
+    if (sender.state == UIGestureRecognizerStateEnded)
+    {
+        CGPoint location = [sender locationInView:nil]; //Passing nil gives us coordinates in the window
+        
+        // Not strictly necessary to check since both tap on the background and tap on the view should dismiss the controller
+        // Convert tap location into the local view's coordinate system. If outside, dismiss the view.
+        if (![self.view pointInside:[self.view convertPoint:location fromView:self.view.window] withEvent:nil])
+        {
+            if(self.view) {
+                [self dismissViewControllerAnimated:YES completion:nil];
+            }
+        }
     }
 }
 
@@ -190,6 +230,13 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - UIGestureRecognizerDelegate
+
+// because we have two gesture recognizers we want them both to be active
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return YES;
 }
 
 /*

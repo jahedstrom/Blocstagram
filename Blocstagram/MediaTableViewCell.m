@@ -237,6 +237,7 @@ static NSParagraphStyle *paragraphStyle;
 
 }
 
+// UITraitEnvironment delegate - UIView conforms to protocol
 - (void) traitCollectionDidChange:(UITraitCollection *)previousTraitCollection {
     if (self.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClassCompact) {
         /* It's compact! */
