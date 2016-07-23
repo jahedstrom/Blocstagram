@@ -8,6 +8,9 @@
 
 #import <XCTest/XCTest.h>
 #import "User.h"
+#import "Media.h"
+#import "ComposeCommentView.h"
+#import "MediaTableViewCell.h"
 
 @interface UserTests : XCTestCase
 
@@ -39,5 +42,103 @@
     XCTAssertEqualObjects(testUser.profilePictureURL, [NSURL URLWithString:sourceDictionary[@"profile_picture"]], @"The profile picture should be equal");
 }
 
+- (void)testThatMediaInitializationWorks
+{
+       NSDictionary *mediaDictionary = @{
+                                      @"attribution": @"<null>",
+                                      @"caption":     @{
+                                              @"created_time": @"1469199393",
+                                              @"from":         @{
+                                                      @"full_name": @"Biff",
+                                                      @"id": @"184626549593",
+                                                      @"profile_picture": @"https://www.example.com/example.jpg",
+                                                      @"username": @"likesbeer",
+                                                      },
+                                              @"id": @"2974097079346732",
+                                              @"text": @"Hello There!",
+                                              },
+                                      @"comments":     @{
+                                              @"count": @"0",
+                                              },
+                                      @"created_time": @"1469199393",
+                                      @"filter": @"Normal",
+                                      @"id": @"1293874093470987340981273",
+                                      @"images":     @{
+                                              @"low_resolution":         @{
+                                                      @"height": @"320",
+                                                      @"url": @"https://www.example.com/1.jpg",
+                                                      @"width": @"320",
+                                                      },
+                                              @"standard_resolution":         @{
+                                                      @"height": @"640",
+                                                      @"url": @"https://www.example.com/2.jpg",
+                                                      @"width": @"640",
+                                                      },
+                                              @"thumbnail":         @{
+                                                      @"height": @"150",
+                                                      @"url": @"https://www.example.com/3.jpg",
+                                                      @"width": @"150",
+                                                      },
+                                              },
+                                      @"likes":     @{
+                                              @"count": @"11",
+                                              },
+                                      @"link": @"https://www.instagram.com/",
+                                      @"location": @"<null>",
+                                      @"tags":     @[],
+                                      @"type": @"image",
+                                      @"user":     @{
+                                              @"full_name": @"Duff",
+                                              @"id": @"23784682362",
+                                              @"profile_picture": @"https://www.example.com/5.jpg",
+                                              @"username": @"likeswine",
+                                              },
+                                      @"user_has_liked": @"0",
+                                      @"users_in_photo":     @[
+                                              @{
+                                                  @"position":             @{
+                                                          @"x": @"0.3375",
+                                                          @"y": @"0.5828125",
+                                                          },
+                                                  @"user":             @{
+                                                          @"full_name": @"Barf",
+                                                          @"id": @"867857653653",
+                                                          @"profile_picture": @"https://www.example.com/4.jpg",
+                                                          @"username": @"spaceballs",
+                                                          },
+                                                  }
+                                              ],
+                                      };
+    
+    
+    Media *mediaItem = [[Media alloc] initWithDictionary:mediaDictionary];
+    
+    
+    XCTAssertEqualObjects(mediaItem.user.idNumber, mediaDictionary[@"user"][@"id"], @"The ID number should be equal");
+    XCTAssertEqualObjects(mediaItem.user.userName, mediaDictionary[@"user"][@"username"], @"The username should be equal");
+    XCTAssertEqualObjects(mediaItem.user.fullName, mediaDictionary[@"user"][@"full_name"], @"The full name should be equal");
+    XCTAssertEqualObjects(mediaItem.user.profilePictureURL, [NSURL URLWithString:mediaDictionary[@"user"][@"profile_picture"]], @"The profile picture should be equal");
+
+    
+    XCTAssertEqualObjects(mediaItem.idNumber, mediaDictionary[@"id"], @"The ID number should be equal");
+    XCTAssertEqualObjects(mediaItem.caption, mediaDictionary[@"caption"][@"text"], @"The caption text should be equal");
+    XCTAssertEqual(mediaItem.numberOfLikes, [mediaDictionary[@"likes"][@"count"] integerValue], @"The number of likes should be equal");
+    XCTAssertEqualObjects(mediaItem.mediaURL, [NSURL URLWithString:mediaDictionary[@"images"][@"standard_resolution"][@"url"]], @"The profile picture should be equal");
+}
+
+- (void)testComposeCommentViewSetTextWorks
+{
+    
+    ComposeCommentView *commentView = [[ComposeCommentView alloc] initWithFrame:CGRectMake(0, 0, 100, 50)];
+    
+    commentView.text = @"Some comment text";
+    
+    XCTAssertEqual(commentView.isWritingComment, YES, @"Comment view isWritingComment should be True");
+    
+    commentView.text = nil;
+    
+    XCTAssertEqual(commentView.isWritingComment, NO, @"Comment view isWritingComment should be False");
+    
+}
 
 @end
