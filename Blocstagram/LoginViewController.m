@@ -43,11 +43,11 @@ NSString *const LoginViewControllerDidGetAccessTokenNotification = @"LoginViewCo
     
     NSURL *url = [NSURL URLWithString:urlString];
     
-    NSLog(@"url : %@", url);
+//    NSLog(@"url : %@", url);
     
     if (url) {
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
-        NSLog(@"request : %@", request);
+//        NSLog(@"request : %@", request);
         [self.webView loadRequest:request];
     }
 }

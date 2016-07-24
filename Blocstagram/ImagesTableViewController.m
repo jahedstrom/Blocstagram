@@ -105,7 +105,7 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-    NSLog(@"Received Memory Warning in ImagesTableViewController");
+//    NSLog(@"Received Memory Warning in ImagesTableViewController");
 }
 
 #pragma mark - Scrolling
@@ -179,7 +179,7 @@
         Media *mediaItem = [DataSource sharedInstance].mediaItems[indexPath.row];
         if (mediaItem.downloadState == MediaDownloadStateNeedsImage) {
             [[DataSource sharedInstance] downloadImageForMediaItem:mediaItem];
-            NSLog(@"downloaded image..");
+//            NSLog(@"downloaded image..");
         }
     }
 }
@@ -223,13 +223,7 @@
 }
 
 - (void) cameraViewController:(CameraViewController *)cameraViewController didCompleteWithImage:(UIImage *)image {
-//    [cameraViewController dismissViewControllerAnimated:YES completion:^{
-//        if (image) {
-//            NSLog(@"Got an image!");
-//        } else {
-//            NSLog(@"Closed without an image.");
-//        }
-//    }];
+
     [self handleImage:image withNavigationController:cameraViewController.navigationController];
 
 }
@@ -238,13 +232,13 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     [self infiniteScrollIfNecessary];
-    NSLog(@"scrollViewDidScroll..");
-    NSLog(@"decelerating: %@", self.tableView.decelerating ? @"YES" : @"NO");
+//    NSLog(@"scrollViewDidScroll..");
+//    NSLog(@"decelerating: %@", self.tableView.decelerating ? @"YES" : @"NO");
 }
 
 - (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
-    NSLog(@"scrollViewWillBeginDecelerating..");
-    NSLog(@"decelerating: %@", self.tableView.decelerating ? @"YES" : @"NO");
+//    NSLog(@"scrollViewWillBeginDecelerating..");
+//    NSLog(@"decelerating: %@", self.tableView.decelerating ? @"YES" : @"NO");
     [self downloadImagesForVisibleCells];
 }
 
@@ -296,9 +290,10 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    [self downloadImagesForVisibleCells];
+
     // Moved to separate function (downloadImagesForVisibleCells) to try and eliminate jumpiness while scrolling fast
-    
-//    Media *mediaItem = [DataSource sharedInstance].mediaItems[indexPath.row]; // Maybe leave this line here?
+    //    Media *mediaItem = [DataSource sharedInstance].mediaItems[indexPath.row]; // Maybe leave this line here?
 //    if (mediaItem.downloadState == MediaDownloadStateNeedsImage) {
 //        [[DataSource sharedInstance] downloadImageForMediaItem:mediaItem];
 //        NSLog(@"downloaded image..");
