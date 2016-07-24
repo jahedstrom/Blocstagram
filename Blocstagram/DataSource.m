@@ -147,7 +147,7 @@
     for (NSDictionary *mediaDictionary in mediaArray) {
         Media *mediaItem = [[Media alloc] initWithDictionary:mediaDictionary];
         
-        NSLog(@"Media Dictionary: %@", mediaDictionary);
+//        NSLog(@"Media Dictionary: %@", mediaDictionary);
         
         if (mediaItem) {
             [tmpMediaItems addObject:mediaItem];
