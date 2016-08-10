@@ -12,6 +12,7 @@
 		AB02F1F41D3DF3B600B7C733 /* FilterCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB02F1F31D3DF3B600B7C733 /* FilterCollectionViewCell.m */; };
 		AB044A991D3056FF00C1B037 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB044A981D3056FF00C1B037 /* LoginViewController.m */; };
 		AB215A5B1D42914C000722B1 /* UserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB215A5A1D42914C000722B1 /* UserTests.m */; };
+		AB215AC11D5A8467000722B1 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB3C2D591D1E405C008C5852 /* 1.jpg */; };
 		AB326CB51D3C2D51003AD410 /* CameraToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = AB326CB41D3C2D51003AD410 /* CameraToolbar.m */; };
 		AB326CB81D3C2E89003AD410 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB326CB71D3C2E89003AD410 /* CameraViewController.m */; };
 		AB326CBD1D3C43E0003AD410 /* UIImage+ImageUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = AB326CBC1D3C43E0003AD410 /* UIImage+ImageUtilities.m */; };
@@ -89,7 +90,7 @@
 		AB3C2D491D1E3A78008C5852 /* BlocstagramTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlocstagramTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB3C2D4D1D1E3A78008C5852 /* BlocstagramTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlocstagramTests.m; sourceTree = "<group>"; };
 		AB3C2D4F1D1E3A78008C5852 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AB3C2D591D1E405C008C5852 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
+		AB3C2D591D1E405C008C5852 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 1.jpg; path = ../Blocstagram/1.jpg; sourceTree = "<group>"; };
 		AB3C2D5A1D1E405C008C5852 /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
 		AB3C2D5B1D1E405C008C5852 /* 3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3.jpg; sourceTree = "<group>"; };
 		AB3C2D5C1D1E405C008C5852 /* 4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 4.jpg; sourceTree = "<group>"; };
@@ -247,6 +248,7 @@
 		AB3C2D4C1D1E3A78008C5852 /* BlocstagramTests */ = {
 			isa = PBXGroup;
 			children = (
+				AB3C2D591D1E405C008C5852 /* 1.jpg */,
 				AB3C2D4D1D1E3A78008C5852 /* BlocstagramTests.m */,
 				AB3C2D4F1D1E3A78008C5852 /* Info.plist */,
 				AB215A5A1D42914C000722B1 /* UserTests.m */,
@@ -257,7 +259,6 @@
 		AB3C2D581D1E3DB3008C5852 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				AB3C2D591D1E405C008C5852 /* 1.jpg */,
 				AB3C2D5A1D1E405C008C5852 /* 2.jpg */,
 				AB3C2D5B1D1E405C008C5852 /* 3.jpg */,
 				AB3C2D5C1D1E405C008C5852 /* 4.jpg */,
@@ -376,6 +377,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB215AC11D5A8467000722B1 /* 1.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

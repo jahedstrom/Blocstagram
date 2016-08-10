@@ -141,4 +141,94 @@
     
 }
 
+- (void)testHeightForMediaItemWorks
+{
+    NSDictionary *mediaDictionary = @{
+                                      @"attribution": @"<null>",
+                                      @"caption":     @{
+                                              @"created_time": @"1469199393",
+                                              @"from":         @{
+                                                      @"full_name": @"Biff",
+                                                      @"id": @"184626549593",
+                                                      @"profile_picture": @"https://www.example.com/example.jpg",
+                                                      @"username": @"likesbeer",
+                                                      },
+                                              @"id": @"2974097079346732",
+                                              @"text": @"Hello There!",
+                                              },
+                                      @"comments":     @{
+                                              @"count": @"0",
+                                              },
+                                      @"created_time": @"1469199393",
+                                      @"filter": @"Normal",
+                                      @"id": @"1293874093470987340981273",
+                                      @"images":     @{
+                                              @"low_resolution":         @{
+                                                      @"height": @"320",
+                                                      @"url": @"https://www.example.com/1.jpg",
+                                                      @"width": @"320",
+                                                      },
+                                              @"standard_resolution":         @{
+                                                      @"height": @"640",
+                                                      @"url": @"https://www.example.com/2.jpg",
+                                                      @"width": @"640",
+                                                      },
+                                              @"thumbnail":         @{
+                                                      @"height": @"150",
+                                                      @"url": @"https://www.example.com/3.jpg",
+                                                      @"width": @"150",
+                                                      },
+                                              },
+                                      @"likes":     @{
+                                              @"count": @"11",
+                                              },
+                                      @"link": @"https://www.instagram.com/",
+                                      @"location": @"<null>",
+                                      @"tags":     @[],
+                                      @"type": @"image",
+                                      @"user":     @{
+                                              @"full_name": @"Duff",
+                                              @"id": @"23784682362",
+                                              @"profile_picture": @"https://www.example.com/5.jpg",
+                                              @"username": @"likeswine",
+                                              },
+                                      @"user_has_liked": @"0",
+                                      @"users_in_photo":     @[
+                                              @{
+                                                  @"position":             @{
+                                                          @"x": @"0.3375",
+                                                          @"y": @"0.5828125",
+                                                          },
+                                                  @"user":             @{
+                                                          @"full_name": @"Barf",
+                                                          @"id": @"867857653653",
+                                                          @"profile_picture": @"https://www.example.com/4.jpg",
+                                                          @"username": @"spaceballs",
+                                                          },
+                                                  }
+                                              ],
+                                      };
+    
+    
+    Media *mediaItem = [[Media alloc] initWithDictionary:mediaDictionary];
+    
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    NSString *imagePath = [bundle pathForResource:@"1" ofType:@"jpg"];
+    UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
+    
+    mediaItem.image = image;
+    UITraitCollection *traitCollection = [UITraitCollection traitCollectionWithHorizontalSizeClass:UIUserInterfaceSizeClassCompact]; // classcompact will make the image height equal to it's width
+    CGFloat imageHeight = [MediaTableViewCell heightForMediaItem:mediaItem width:320 traitCollection:traitCollection];
+    CGFloat actualImageHeight = 320 + 138;      // 138 is the height of the user name and caption label plus the comment label
+    XCTAssertEqual(imageHeight, actualImageHeight, @"The image height should be equal");
+   
+    imageHeight = [MediaTableViewCell heightForMediaItem:mediaItem width:480 traitCollection:traitCollection];
+    actualImageHeight = 480 + 138;
+    XCTAssertEqual(imageHeight, actualImageHeight, @"The image height should be equal");
+    
+    imageHeight = [MediaTableViewCell heightForMediaItem:mediaItem width:600 traitCollection:traitCollection];
+    actualImageHeight = 600 + 138;
+    XCTAssertEqual(imageHeight, actualImageHeight, @"The image height should be equal");
+}
+
 @end

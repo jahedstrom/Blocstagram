@@ -193,8 +193,11 @@ static NSParagraphStyle *paragraphStyle;
     layoutCell.mediaItem = mediaItem;
     
     layoutCell.frame = CGRectMake(0, 0, width, CGRectGetHeight(layoutCell.frame));
-    layoutCell.overrideTraitCollection = traitCollection;
-
+    
+    if (traitCollection != nil) {
+        layoutCell.overrideTraitCollection = traitCollection;
+    }
+    
     [layoutCell setNeedsLayout];
     [layoutCell layoutIfNeeded];
     
